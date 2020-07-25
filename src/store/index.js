@@ -36,6 +36,23 @@ export default new Vuex.Store({
         console.log(error)
         commit('setError', error)
       })
+    },
+
+    loginUsuario({commit}, usuario){
+      auth.signInWithEmailAndPassword(usuario.email, usuario.password)
+      .then(res =>{
+        console.log(res)
+        const user = {
+          email: res.user.email,
+          id: res.user.uid
+        }
+        commit('setUsuario', user)
+        router.push('/')
+      })
+      .catch(error =>{
+        console.log(error)
+        commit('setError', error)
+      })
     }
   },
   modules: {
