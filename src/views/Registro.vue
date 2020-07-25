@@ -5,13 +5,14 @@
             <input type="email" placeholder="Ingrese email" v-model="email">
             <input type="password" placeholder="Ingrese password" v-model="password">
             <input type="password" placeholder="Repetir password" v-model="retypePassword">
-            <button type="submit">Registrar</button>
+            <button type="submit" :disabled="!desactivar">Registrar</button>
         </form>
+        {{error}}
     </div>
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import {mapActions, mapState} from 'vuex'
     export default {
         name:'Registro',
         data(){
@@ -23,6 +24,12 @@ import {mapActions} from 'vuex'
         },
         methods:{
             ...mapActions(['crearUsuario'])
+        },
+        computed:{
+            ...mapState(['error']),
+            desactivar(){
+                return this.password === this.retypePassword && this.password.trim() != ""               
+            }
         }
         
     }
