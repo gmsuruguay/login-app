@@ -28,7 +28,7 @@ import {mapActions, mapState} from 'vuex'
         computed:{
             ...mapState(['error']),
             desactivar(){
-                return this.password === this.retypePassword && this.password.trim() != ""               
+                return this.password === this.retypePassword && this.password.trim() != "" && this.password.length > 5              
             }
         }
         
