@@ -64,6 +64,15 @@ export default new Vuex.Store({
       commit('setUsuario', user)
     } 
   },
+  getters:{
+    existUser(state){
+      if (state.usuario) {
+        return true
+      } else {
+        return false
+      }
+    }
+  },
   modules: {
   }
 })
